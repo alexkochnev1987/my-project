@@ -11,12 +11,13 @@ const prevPrice = 99990;
 const thirdPrice = 85251;
 function Card() {
   return (
-    <div className="max-w-sm px-3 py-6 bg-white rounded-xl shadow-lg transform hover:scale-102 transition duration-500">
+    <div className="max-w-xs px-3 py-6 bg-white rounded-xl shadow-lg transform ">
       <div className="relative flex justify-center">
         <Image
           width={300}
           height={350}
           src={src}
+          priority={true}
           alt="Colors"
           className="rounded-3xl"
         />
@@ -99,7 +100,7 @@ function Card() {
       </div>
 
       <div className="flex gap-3 items-center pt-2">
-        <button className="bg-purple-500 p-2 rounded-xl font-bold text-white">
+        <button className="bg-purple-500 p-2 rounded-xl font-bold text-white hover:scale-105 transition duration-500">
           В корзину
         </button>
         <svg
@@ -111,9 +112,9 @@ function Card() {
         >
           <path
             stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
             d="M11 4C5.5-1.5-1.5 5.5 4 11l7 7 7-7c5.458-5.458-1.542-12.458-7-7Z"
           />
         </svg>

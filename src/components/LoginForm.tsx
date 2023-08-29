@@ -11,13 +11,20 @@ const schema = yup
   .object({
     email: yup
       .string()
-      .trim()
-      .email("Некорректный адрес электронной почты")
+      .matches(
+        /^[\w-\.]+@([\w-]+\.)+[a-z]{2,4}$/,
+        "Некорректный адрес электронной почты"
+      )
       .required(),
     password: yup
       .string()
-      .trim()
-      .strict(true)
+      .transform((value, originalValue) => {
+        value = originalValue
+          .split("")
+          .filter((x: string) => x !== " ")
+          .join("");
+        return value;
+      })
       .min(8, "Пароль должен содержать минимум 8 символов")
       .matches(/[A-Z, А-Я]/, "Пароль должен содержать 1 заглавную букву")
       .required(),
@@ -26,11 +33,6 @@ const schema = yup
 type FormData = yup.InferType<typeof schema>;
 
 interface LoginFormProps {}
-
-type Inputs = {
-  email: string;
-  password: string;
-};
 
 export const LoginForm: FC<LoginFormProps> = ({}) => {
   const {
@@ -46,7 +48,7 @@ export const LoginForm: FC<LoginFormProps> = ({}) => {
     setTimeout(() => {
       setLoading(false);
       router.push("/");
-    }, 1500);
+    }, 2000);
   };
 
   const isButtonDisabled = () => {

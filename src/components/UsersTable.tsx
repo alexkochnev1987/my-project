@@ -1,5 +1,6 @@
 import React from "react";
 import { UserItem } from "./Users";
+import { parseDate } from "@/app/utils/parseDate";
 
 const tableHeadNames = ["ID", "Имя", "Роль", "Дата создания", "Действия"];
 
@@ -15,8 +16,12 @@ function UsersTable({
       <table className="w-full text-sm text-left text-gray-500">
         <thead className="text-xs text-gray-700 bg-gray-50">
           <tr>
-            {tableHeadNames.map((name) => (
-              <th key={name} scope="col" className="px-6 py-3">
+            {tableHeadNames.map((name, index) => (
+              <th
+                key={name}
+                scope="col"
+                className={`px-6 py-3 ${index === 1 ? "w-30" : "w-fit"} `}
+              >
                 {name}
               </th>
             ))}
@@ -27,13 +32,13 @@ function UsersTable({
             <tr className="bg-white border-b" key={user.id}>
               <th
                 scope="row"
-                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-10"
+                className="pl-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-10"
               >
                 {user.id}
               </th>
-              <td className="px-6 py-4 w-25">{user.name}</td>
+              <td className="px-6 py-4">{user.name}</td>
               <td className="px-6 py-4">{user.role}</td>
-              <td className="px-6 py-4">{user.ctime}</td>
+              <td className="px-6 py-4">{parseDate(user.ctime)}</td>
               <td className="px-6 py-4">
                 <button
                   onClick={() => deleteUser(user.id)}

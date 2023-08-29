@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { WebsocketMessage, useWebSocketClient } from "./WebSocketClient";
 import Heading from "./Heading";
 import { parseDate } from "@/app/utils/parseDate";
@@ -7,7 +7,7 @@ import { parseDate } from "@/app/utils/parseDate";
 export function Events() {
   const [data, setData] = useState<WebsocketMessage[]>([]);
 
-  const handleDataReceived = (newData: WebsocketMessage) => {
+  const handleDataReceived = useCallback((newData: WebsocketMessage) => {
     setData((prevData) => {
       if (prevData.length < 1000) {
         return [newData, ...prevData];
@@ -17,7 +17,7 @@ export function Events() {
       newArr.unshift(newData);
       return newArr;
     });
-  };
+  }, []);
   useWebSocketClient(handleDataReceived);
 
   return (

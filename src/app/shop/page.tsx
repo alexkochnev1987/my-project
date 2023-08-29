@@ -3,9 +3,11 @@ import React from "react";
 
 function ShopPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-tr py-3 from-red-300 to-yellow-200 flex justify-center items-start">
-      <div className="md:px-4 md:grid md:grid-cols-2 lg:grid-cols-3 gap-5 space-y-4 md:space-y-0">
-        <Card />
+    <div className="w-full min-h-screen bg-gradient-to-tr from-red-300 to-yellow-200">
+      <div className="p-4 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+        {new Array(5).fill(1).map((elem, index) => {
+          return <Card key={index} />;
+        })}
       </div>
     </div>
   );

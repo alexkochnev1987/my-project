@@ -15,8 +15,6 @@ const navLinks: NavLink[] = [
 function Navigation() {
   const pathName = usePathname();
 
-  console.log(pathName);
-
   return (
     <>
       {navLinks.map(({ href, label }) => (

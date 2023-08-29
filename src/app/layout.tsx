@@ -21,7 +21,7 @@ export default function RootLayout({
         <header className="py-5 px-20 flex gap-6">
           <Navigation />
         </header>
-        <main className="flex flex-col items-center justify-between p-8 h-[90vh]">
+        <main className="flex flex-col items-center justify-between min-h-[90vh]">
           {children}
         </main>
       </body>
